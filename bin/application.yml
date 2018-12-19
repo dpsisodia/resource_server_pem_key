@@ -1,0 +1,18 @@
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.security.oauth2.provider.token: DEBUG
+
+server:
+  port: 9090
+  
+public_key: |   
+  -----BEGIN PUBLIC KEY-----
+  MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyjMsAVNpTLl69Kn7qQ5L
+  CiwbvBiASASHHvvoIMct/eXWcO+lVEnUjIDKSDtjr6Z1IBz/ZdN32ptvM93hxL48
+  QFiK+cr1QFLS/UjnqjrniCQYZJmbyXXbWi/8/AnrYERn6NdINx34nnpIEWvhvLX9
+  El+houbhNssBF61ktRzd0y4tL3msnW1EKK1cQ9SWWQzqvzcRntSRRiBaCWmixsHL
+  EleGNLg5KfmEM0YkOhWH5tuwPAnTi+FGNebnh0O58PA8kFTMymYyPIgZg9jLLsys
+  vwk0OVavoeLWQ47ZVIf/IIx3w9pj+CKbk7sGkBblY6iQpypAv8p83zUw0jPguC8y
+  TwIDAQAB
+  -----END PUBLIC KEY-----
