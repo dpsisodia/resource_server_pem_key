@@ -11,8 +11,6 @@ import org.springframework.security.access.expression.method.MethodSecurityExpre
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
@@ -28,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @EnableResourceServer
 public class ResourceServer  extends ResourceServerConfigurerAdapter {
-
+	
     public static void main(String[] args) {
         SpringApplication.run(ResourceServer.class, args);
     }
@@ -36,11 +34,10 @@ public class ResourceServer  extends ResourceServerConfigurerAdapter {
     @PreAuthorize("#oauth2.hasAnyScope('read')")
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public Object user(Principal user) {
-    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    	return auth;
+    	return user;
     }
 
-    @Value("${jwt.reourceId:clientid}")
+    @Value("${jwt.resourceId:http://localhost:8888/api}")
     private String resourceId;
     
     @Value("${public_key}")
@@ -53,7 +50,7 @@ public class ResourceServer  extends ResourceServerConfigurerAdapter {
 
     @Bean
 	public JwtAccessTokenConverter tokenEnhancer() {
-		JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+		JwtAccessTokenConverter converter = new MyJwtAccessTokenConverter();
 		converter.setVerifierKey(publicKey);
 		return converter;
 	}
